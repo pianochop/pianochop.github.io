@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
 <title>Podcast clips — Flora Audio</title>
 <meta name="description" content="Monthly short-form clips for podcasts, captioned and posted to TikTok, Reels and YouTube Shorts.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -10,11 +11,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#f3f5f2; --ink:#12302c; --muted:#4d625e; --line:#cdd8d3;
-  --panel:#e6ede9; --amber:#e39a2d; --amber-ink:#1c1405;
+  color-scheme:light;
+  --paper:#f4efe3; --ink:#25231f; --muted:#6a665b; --line:#ddd5c4;
+  --panel:#e9e2d1; --amber:#70a37f; --amber-ink:#141c17;
+  --feat:#2a322c; --feat-ink:#f3eee2; --field:#fffdf7; --field-line:#c2b9a4;
   --head:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
   --body:"Avenir Next","Segoe UI",system-ui,-apple-system,sans-serif;
 }
+@media (prefers-color-scheme:dark){:root{color-scheme:dark;--paper:#171614;--ink:#efe9dc;--muted:#a8a396;--line:#2e2c27;--panel:#211f1c;--amber:#87b393;--feat:#2a322c;--feat-ink:#f3eee2;--field:#211f1c;--field-line:#4a473f}}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.6 var(--body)}
@@ -42,7 +46,7 @@ h2{font:700 clamp(26px,4vw,36px)/1.15 var(--head);margin:0 0 10px;letter-spacing
 .who p,.step p{margin:0;color:var(--muted);font-size:16px}
 .pkgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
 .pkg{background:var(--panel);border-radius:10px;padding:26px 24px;display:flex;flex-direction:column}
-.pkg.feat{background:var(--ink);color:#eef3f0}
+.pkg.feat{background:var(--feat);color:var(--feat-ink)}
 .pkg.feat li::marker{color:var(--amber)}
 .pkg h3{font:700 22px var(--head);margin:0}
 .price{font:700 34px var(--head);margin:8px 0 2px}
@@ -64,7 +68,7 @@ details[open] summary::after{content:"\2212"}
 details p{margin:10px 0 0;color:var(--muted);max-width:40em}
 form{display:grid;gap:14px;max-width:560px}
 label{font-weight:700;font-size:15px;display:grid;gap:5px}
-input,select,textarea{font:inherit;padding:11px 12px;border:1px solid #9fb0aa;border-radius:6px;background:#fff;color:var(--ink);width:100%}
+input,select,textarea{font:inherit;padding:11px 12px;border:1px solid var(--field-line);border-radius:6px;background:var(--field);color:var(--ink);width:100%}
 textarea{min-height:110px;resize:vertical}
 footer{border-top:1px solid var(--line);padding:26px 0 40px;font-size:15px;color:var(--muted)}
 @media (max-width:520px){.btn.alt{margin:10px 0 0}}
@@ -78,6 +82,8 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;font-size:15px;color
 blockquote.proof{margin:0;padding:6px 0 6px 20px;border-left:4px solid var(--amber);font:500 clamp(20px,3vw,26px)/1.35 var(--head);max-width:30em}
 blockquote.proof footer{border:0;padding:12px 0 0;font:400 15px var(--body);color:var(--muted)}
 .stat h3{font:700 clamp(28px,4vw,40px)/1.1 var(--head);margin:0 0 4px}
+.embed{max-width:400px}
+.embed iframe{width:100%;height:680px;border:1px solid var(--line);border-radius:10px;background:#fff}
 </style>
 </head>
 <body>
@@ -93,6 +99,10 @@ blockquote.proof footer{border:0;padding:12px 0 0;font:400 15px var(--body);colo
 </div>
 <section id="how"><h2>How it works</h2><p class="sub">You keep publishing on YouTube. The clips happen without you.</p>
 <ol class="steps"><li class="step"><h3>Share your channel</h3><p>Send your YouTube channel link. That is your whole job. New episodes are picked up automatically.</p></li><li class="step"><h3>Clips get cut</h3><p>Strong moments are picked, reframed to vertical, and captioned in your style.</p></li><li class="step"><h3>Posts go live</h3><p>Clips are scheduled across your accounts, then you get a monthly summary of what went out.</p></li></ol></section>
+<section id="example"><h2>See a real clip</h2>
+<p class="sub">Cut from a long-form episode, reframed to vertical and captioned. This is what lands on your feed.</p>
+<div class="embed"><iframe src="https://www.instagram.com/p/DeH7QBVAA_Y/embed" title="Example clip on Instagram" loading="lazy" allowtransparency="true" allowfullscreen></iframe></div>
+<p class="note"><a href="https://www.instagram.com/p/DeH7QBVAA_Y/" target="_blank" rel="noopener">Open on Instagram</a></p></section>
 <section><h2>Clips from someone who works in audio</h2>
 <p class="sub">Flora Audio is run by an experienced audio producer, so your clips sound as good as they look. Clean levels, balanced voices and no distracting noise, before anything gets posted. Found a problem in your source audio? Add audio repair to any plan for a small flat fee, quoted up front.</p></section>
 <section id="pricing"><h2>Simple monthly pricing</h2><p class="sub">Pick a clip volume. Cancel any month. One-time setup of $150 covers caption styling and account connections.</p>

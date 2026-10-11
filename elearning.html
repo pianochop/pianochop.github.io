@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eLearning audio post-production — Flora Audio</title>
+<meta name="description" content="Clean, consistent audio for lectures, course modules and LMS delivery, on a flat monthly retainer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f3f5f2; --ink:#12302c; --muted:#4d625e; --line:#cdd8d3;
+  --panel:#e6ede9; --amber:#e39a2d; --amber-ink:#1c1405;
+  --head:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --body:"Avenir Next","Segoe UI",system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.6 var(--body)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+.wrap{max-width:1000px;margin:0 auto;padding:0 22px}
+header.top{border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;flex-wrap:wrap;gap:10px 26px;align-items:center;justify-content:space-between;padding-top:16px;padding-bottom:16px}
+.brand{font:700 20px var(--head);text-decoration:none}
+nav{display:flex;flex-wrap:wrap;gap:6px 20px;font-size:15px}
+nav a{text-decoration:none;color:var(--muted)}
+nav a:hover,nav a[aria-current]{color:var(--ink)}
+nav a[aria-current]{font-weight:700;border-bottom:2px solid var(--amber)}
+.hero{padding:64px 0 48px}
+h1{font:700 clamp(34px,6.4vw,64px)/1.05 var(--head);margin:0 0 20px;max-width:15em;letter-spacing:-.02em}
+.lede{font-size:19px;max-width:34em;color:var(--muted);margin:0 0 28px}
+.btn{display:inline-block;background:var(--amber);color:var(--amber-ink);font:700 16px var(--body);padding:14px 22px;border-radius:6px;text-decoration:none;border:0;cursor:pointer}
+.btn:hover{filter:brightness(1.06)}
+.btn.alt{background:transparent;color:var(--ink);border:2px solid var(--ink);margin-left:10px}
+section{padding:44px 0;border-top:1px solid var(--line)}
+h2{font:700 clamp(26px,4vw,36px)/1.15 var(--head);margin:0 0 10px;letter-spacing:-.01em}
+.sub{color:var(--muted);margin:0 0 28px;max-width:36em}
+.who{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:22px 30px}
+.who h3,.step h3{font:700 18px var(--head);margin:0 0 4px}
+.who p,.step p{margin:0;color:var(--muted);font-size:16px}
+.pkgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+.pkg{background:var(--panel);border-radius:10px;padding:26px 24px;display:flex;flex-direction:column}
+.pkg.feat{background:var(--ink);color:#eef3f0}
+.pkg.feat li::marker{color:var(--amber)}
+.pkg h3{font:700 22px var(--head);margin:0}
+.price{font:700 34px var(--head);margin:8px 0 2px}
+.price small{font:400 15px var(--body);opacity:.75}
+.for{font-size:15px;opacity:.8;margin:0 0 14px}
+.pkg ul{margin:0 0 22px;padding-left:20px;flex:1}
+.pkg li{margin:5px 0}
+.pkg .btn{text-align:center}
+.pkg.feat .btn{background:var(--amber)}
+.note{font-size:15px;color:var(--muted);margin-top:18px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;counter-reset:s;padding:0;list-style:none;margin:0}
+.step{counter-increment:s;padding-top:14px;border-top:3px solid var(--amber)}
+.step h3::before{content:counter(s) ". "}
+details{border-bottom:1px solid var(--line);padding:14px 0}
+summary{cursor:pointer;font-weight:700;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";float:right;font-size:22px;line-height:1}
+details[open] summary::after{content:"\2212"}
+details p{margin:10px 0 0;color:var(--muted);max-width:40em}
+form{display:grid;gap:14px;max-width:560px}
+label{font-weight:700;font-size:15px;display:grid;gap:5px}
+input,select,textarea{font:inherit;padding:11px 12px;border:1px solid #9fb0aa;border-radius:6px;background:#fff;color:var(--ink);width:100%}
+textarea{min-height:110px;resize:vertical}
+footer{border-top:1px solid var(--line);padding:26px 0 40px;font-size:15px;color:var(--muted)}
+@media (max-width:520px){.btn.alt{margin:10px 0 0}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.hub .pkg{text-decoration:none}
+.hub .pkg:hover{outline:2px solid var(--amber)}
+.go{margin-top:auto;font-weight:700;border-bottom:2px solid var(--amber);align-self:flex-start}
+.hub .pkg p{margin:8px 0 18px}
+
+
+blockquote.proof{margin:0;padding:6px 0 6px 20px;border-left:4px solid var(--amber);font:500 clamp(20px,3vw,26px)/1.35 var(--head);max-width:30em}
+blockquote.proof footer{border:0;padding:12px 0 0;font:400 15px var(--body);color:var(--muted)}
+.stat h3{font:700 clamp(28px,4vw,40px)/1.1 var(--head);margin:0 0 4px}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+<a class="brand" href="index.html">Flora Audio</a>
+<nav aria-label="Main"><a href="clips.html">Podcast clips</a><a href="podcasters.html">Podcasters</a><a href="elearning.html" aria-current="page">eLearning</a><a href="live-sound.html">Live sound</a><a href="recording.html">Mixing &amp; recording</a></nav>
+</div></header>
+<main><div class="wrap">
+<div class="hero">
+<h1>Audio post-production for eLearning teams.</h1>
+<p class="lede">Clean, consistent audio for lectures, course modules and LMS delivery. One flat monthly fee covers a set volume of finished audio, delivered on your schedule.</p>
+<a class="btn" href="#quote">Talk about your courses</a><a class="btn alt" href="#how">How the retainer works</a>
+</div>
+
+<section id="proof">
+<blockquote class="proof">&ldquo;A trusted sound engineer in our live-streaming studio, ensuring high-quality audio for online classes that reach thousands of students each week.&rdquo;
+<footer>Will Kurzner, Audio Post-Production Supervisor, LAITS at UT Austin</footer></blockquote>
+</section>
+
+<section id="experience">
+<div class="who">
+<div class="stat"><h3>500+ hours</h3><p>of instructional audio: lectures, course modules and LMS delivery</p></div>
+<div class="stat"><h3>10+ series</h3><p>of podcasts edited, mixed and mastered</p></div>
+<div class="stat"><h3>Async</h3><p>Fully remote. You send files, finished audio comes back on schedule.</p></div>
+</div>
+</section>
+
+<!-- BEFORE & AFTER: add your sample, then uncomment.
+Put audio/before.mp3 and audio/after.mp3 in the repo (use a clip you have permission to share).
+<section id="samples">
+<h2>Hear the difference</h2>
+<p class="sub">The same lecture clip, before and after.</p>
+<p><strong>Before</strong><br><audio controls preload="none" src="audio/before.mp3"></audio></p>
+<p><strong>After</strong><br><audio controls preload="none" src="audio/after.mp3"></audio></p>
+</section>
+-->
+
+<section id="what">
+<h2>What you get</h2>
+<p class="sub">Audio that students can follow without effort.</p>
+<div class="who">
+<div><h3>Clean, clear speech</h3><p>Room noise, hum, echo and harsh mic sound reduced so the instructor is easy to understand.</p></div>
+<div><h3>Consistent levels</h3><p>Every lecture and module matches in volume and tone, so students never reach for the volume control.</p></div>
+<div><h3>Edits that save time</h3><p>Stumbles, long pauses and false starts trimmed without changing how the instructor sounds.</p></div>
+<div><h3>Ready for your LMS</h3><p>Files delivered in the format and loudness your platform and video editors need.</p></div>
+</div>
+</section>
+
+<section id="how">
+<h2>How the retainer works</h2>
+<p class="sub">A flat monthly fee for a set volume of finished audio. No per-project negotiation and no surprise invoices.</p>
+<ol class="steps">
+<li class="step"><h3>Tell me your volume</h3><p>How many hours of audio you produce in a typical month.</p></li>
+<li class="step"><h3>Get a flat monthly quote</h3><p>One price for that volume, with turnaround times agreed up front.</p></li>
+<li class="step"><h3>Send files as you record</h3><p>Use a shared folder. Nothing to schedule or attend.</p></li>
+<li class="step"><h3>Finished audio comes back</h3><p>Delivered on the schedule that fits your production calendar.</p></li>
+</ol>
+</section>
+
+<section id="who"><h2>Who this is for</h2>
+<div class="who">
+<div><h3>Universities and course teams</h3><p>Lecture capture, online courses and live-streamed classes.</p></div>
+<div><h3>Instructional designers</h3><p>Course modules that need steady, predictable audio quality.</p></div>
+<div><h3>Edtech companies</h3><p>Content libraries that grow every month and need consistent delivery.</p></div>
+</div>
+</section>
+
+<section id="faq"><h2>Questions</h2>
+<details><summary>What do I need to send?</summary><p>Raw audio or video files from your recordings, in a shared folder. I will tell you what to do about anything unusual.</p></details>
+<details><summary>Can I try it first?</summary><p>Yes. Send one lecture or module and I will clean it up so you can hear the difference before you commit.</p></details>
+<details><summary>How fast is turnaround?</summary><p>We agree on turnaround times when you sign up, based on your production calendar.</p></details>
+<details><summary>Can the retainer change as we grow?</summary><p>Yes. Volume can go up or down from one month to the next. We set the new amount before the month starts.</p></details>
+<details><summary>Do you also work on podcasts?</summary><p>Yes. See the <a href="podcasters.html">podcasters page</a>.</p></details>
+</section>
+
+<section id="quote">
+<h2>Talk about your courses</h2>
+<p class="sub">Tell me how much audio you produce and I will send a flat monthly quote.</p>
+<form data-subject="eLearning retainer inquiry">
+<label>Your name<input name="name" required></label>
+<label>Organization<input name="org" required></label>
+<label>Audio per month<select name="volume"><option>Under 10 hours</option><option>10 to 30 hours</option><option>30+ hours</option><option>Not sure yet</option></select></label>
+<label>Details<textarea name="details" placeholder="What kind of content, how it is recorded, any platform requirements"></textarea></label>
+<button class="btn" type="submit">Send request</button>
+</form>
+<p class="note">Prefer email? Write to <a href="mailto:els@floraaudio.com">els@floraaudio.com</a>.</p>
+</section>
+</div></main>
+<footer><div class="wrap">&copy; Flora Audio</div></footer>
+<script>
+/* EDIT: your business email */
+var EMAIL = "els@floraaudio.com";
+document.querySelectorAll("form[data-subject]").forEach(function(f){
+  f.addEventListener("submit",function(e){
+    e.preventDefault();
+    var lines=[];
+    f.querySelectorAll("label").forEach(function(l){
+      var el=l.querySelector("input,select,textarea");
+      if(el&&el.value){lines.push(l.firstChild.textContent.trim()+": "+el.value);}
+    });
+    window.location.href="mailto:"+EMAIL+"?subject="+encodeURIComponent(f.dataset.subject)+"&body="+encodeURIComponent(lines.join("\n"));
+  });
+});
+</script>
+</body>
+</html>

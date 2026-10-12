@@ -15,10 +15,11 @@
   --paper:#f4efe3; --ink:#25231f; --muted:#6a665b; --line:#ddd5c4;
   --panel:#e9e2d1; --amber:#70a37f; --amber-ink:#141c17;
   --feat:#2a322c; --feat-ink:#f3eee2; --field:#fffdf7; --field-line:#c2b9a4;
+  --quote-bar:#bf5700;
   --head:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
   --body:"Avenir Next","Segoe UI",system-ui,-apple-system,sans-serif;
 }
-@media (prefers-color-scheme:dark){:root{color-scheme:dark;--paper:#171614;--ink:#efe9dc;--muted:#a8a396;--line:#2e2c27;--panel:#211f1c;--amber:#87b393;--feat:#2a322c;--feat-ink:#f3eee2;--field:#211f1c;--field-line:#4a473f}}
+@media (prefers-color-scheme:dark){:root{color-scheme:dark;--paper:#171614;--ink:#efe9dc;--muted:#a8a396;--line:#2e2c27;--panel:#211f1c;--amber:#87b393;--feat:#2a322c;--feat-ink:#f3eee2;--field:#211f1c;--field-line:#4a473f;--quote-bar:#e0883a}}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.6 var(--body)}
@@ -79,11 +80,11 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;font-size:15px;color
 .hub .pkg p{margin:8px 0 18px}
 
 
-blockquote.proof{margin:0;padding:6px 0 6px 20px;border-left:4px solid var(--amber);font:500 clamp(20px,3vw,26px)/1.35 var(--head);max-width:30em}
+blockquote.proof{margin:0;padding:6px 0 6px 20px;border-left:4px solid var(--quote-bar);font:500 clamp(20px,3vw,26px)/1.35 var(--head);max-width:30em}
 blockquote.proof footer{border:0;padding:12px 0 0;font:400 15px var(--body);color:var(--muted)}
 .stat h3{font:700 clamp(28px,4vw,40px)/1.1 var(--head);margin:0 0 4px}
 .proof-wrap{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
-.seal{width:96px;height:96px;flex:none;object-fit:contain;background:#fff;border-radius:50%;padding:6px}
+.seal{width:112px;height:112px;flex:none;object-fit:contain}
 .vid{position:relative;aspect-ratio:16/9;max-width:760px;border-radius:10px;overflow:hidden;background:#000}
 .vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .covers{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:14px;margin:0;padding:0;list-style:none}
@@ -106,7 +107,7 @@ blockquote.proof footer{border:0;padding:12px 0 0;font:400 15px var(--body);colo
 
 <section id="proof">
 <div class="proof-wrap">
-<img class="seal" src="images/ut-seal.png" alt="The University of Texas at Austin seal" width="96" height="96">
+<img class="seal" src="images/ut-seal.png" alt="The University of Texas at Austin seal" width="112" height="112">
 <blockquote class="proof">&ldquo;Els has been a trusted sound engineer in our live-streaming studio, ensuring high-quality audio for online classes that reach thousands of students each week.&rdquo;
 <footer>Will Kurzner, Audio Post-Production Supervisor, LAITS at UT Austin</footer></blockquote>
 </div>

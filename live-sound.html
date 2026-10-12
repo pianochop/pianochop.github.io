@@ -82,6 +82,27 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;font-size:15px;color
 blockquote.proof{margin:0;padding:6px 0 6px 20px;border-left:4px solid var(--amber);font:500 clamp(20px,3vw,26px)/1.35 var(--head);max-width:30em}
 blockquote.proof footer{border:0;padding:12px 0 0;font:400 15px var(--body);color:var(--muted)}
 .stat h3{font:700 clamp(28px,4vw,40px)/1.1 var(--head);margin:0 0 4px}
+.rig{display:grid;grid-template-columns:minmax(220px,360px) 1fr;gap:28px 40px;align-items:center}
+.rig img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--line)}
+.rig figcaption{color:var(--muted);font-size:16px}
+.rig h2{margin-bottom:10px}
+.gear ul{margin:6px 0 0;padding-left:18px;color:var(--muted);font-size:16px}
+.gear li{margin:3px 0}
+.kits{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.kit{background:var(--panel);border-radius:10px;padding:24px;display:flex;flex-direction:column}
+.kit h3{font:700 22px var(--head);margin:0}
+.kit ul{margin:0 0 20px;padding-left:20px;flex:1}
+.kit li{margin:5px 0}
+.kit .btn{text-align:center}
+.thumbs{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 16px}
+.thumbs img{width:68px;height:68px;object-fit:contain;background:#fff;border-radius:8px;padding:4px}
+.subhead{font:700 clamp(22px,3vw,28px)/1.2 var(--head);margin:40px 0 16px}
+.addons{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-bottom:28px}
+.addons figure{margin:0}
+.addons img{display:block;width:100%;max-width:240px;aspect-ratio:1/1;object-fit:contain;background:#fff;border-radius:10px;padding:8px}
+.addons figcaption{margin-top:8px;font-size:16px;color:var(--muted)}
+.addons figcaption strong{display:block;color:var(--ink);font:700 18px var(--head)}
+@media (max-width:640px){.rig{grid-template-columns:1fr}.rig img{max-width:360px}}
 </style>
 </head>
 <body>
@@ -108,6 +129,75 @@ blockquote.proof footer{border:0;padding:12px 0 0;font:400 15px var(--body);colo
     <a class="btn alt" href="#packages">See packages</a>
   </div>
 
+  <section id="rig">
+    <figure class="rig">
+      <img src="images/live-rig.jpg" alt="An iPad running a mixer app on the floor in front of a living room band setup with a drum kit, mics on stands, guitar amps and a keyboard" width="900" height="1273" loading="lazy">
+      <figcaption>
+        <h2>The rig</h2>
+        <p>My XR18 wireless mixer, run from an iPad, and our gear setup in my living room.</p>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section id="gear">
+    <h2>What's available</h2>
+    <p class="sub">You can rent packages individually, but when I run sound, I bring all of it.</p>
+    <div class="kits">
+      <div class="kit">
+        <h3>Party Kit</h3>
+        <div class="price">$100 <small>/ weekend</small></div>
+        <div class="thumbs">
+          <img src="images/elx-115p.png" alt="Electro-Voice ELX115P speaker" loading="lazy">
+          <img src="images/speaker-stand-pair.png" alt="Proline speaker stands" loading="lazy">
+          <img src="images/iec-pair.png" alt="Speaker power cables" loading="lazy">
+          <img src="images/mackie.jpg" alt="Mackie 402VLZ4 mixer" loading="lazy">
+          <img src="images/two-xlrs.png" alt="30 foot XLR cables" loading="lazy">
+          <img src="images/xlr-3.5mm-adapter.png" alt="3.5mm aux to XLR cable" loading="lazy">
+        </div>
+        <ul>
+          <li>2 Electro-Voice ELX115P active 15" speakers, with power cables</li>
+          <li>2 Proline speaker stands</li>
+          <li>Mackie 402VLZ4 4-channel live mixer, with power supply</li>
+          <li>2 30ft XLR cables</li>
+          <li>Aux 3.5mm to XLR cable and phone adapter</li>
+        </ul>
+        <a class="btn" href="#quote">Ask about this</a>
+      </div>
+      <div class="kit">
+        <h3>Party Kit with mics</h3>
+        <div class="price">$150 <small>/ weekend</small></div>
+        <div class="thumbs">
+          <img src="images/elx-115p.png" alt="Electro-Voice ELX115P speaker" loading="lazy">
+          <img src="images/speaker-stand-pair.png" alt="Proline speaker stands" loading="lazy">
+          <img src="images/iec-pair.png" alt="Speaker power cables" loading="lazy">
+          <img src="images/mackie.jpg" alt="Mackie 402VLZ4 mixer" loading="lazy">
+          <img src="images/one-sm58.png" alt="Shure SM58 microphone" loading="lazy">
+          <img src="images/mic-stand-pair.png" alt="Boom mic stands" loading="lazy">
+          <img src="images/two-xlrs.png" alt="30 foot XLR cables" loading="lazy">
+        </div>
+        <ul>
+          <li>Everything in the Party Kit</li>
+          <li>2 Shure SM58 microphones, with mic stands</li>
+          <li>2 more 30ft XLR cables, 4 total</li>
+        </ul>
+        <a class="btn" href="#quote">Ask about this</a>
+      </div>
+    </div>
+
+    <h3 class="subhead">The full rig</h3>
+    <div class="addons">
+      <figure><img src="images/xr18.jpg" alt="XR18 wireless digital mixer" loading="lazy"><figcaption><strong>XR18 wireless mixer</strong>The mixer for the larger setups.</figcaption></figure>
+      <figure><img src="images/ipad.png" alt="iPad running Mixing Station mixer control software" loading="lazy"><figcaption><strong>iPad with Mixing Station</strong>Included with the XR18 on larger kits. It's how the mixer is run.</figcaption></figure>
+      <figure><img src="images/drum-mic-kit.png" alt="Sennheiser drum microphone kit" loading="lazy"><figcaption><strong>Sennheiser drum mic kit</strong>Kick mic, tom mics and overheads.</figcaption></figure>
+    </div>
+    <div class="who gear">
+      <div><h3>Mixers</h3><ul><li>XR18 wireless mixer, with an iPad to control it</li><li>Mackie 402VLZ4 4-channel mixer for smaller events</li></ul></div>
+      <div><h3>PA</h3><ul><li>Electro-Voice ELX115P active 15" speakers</li><li>Proline speaker stands</li></ul></div>
+      <div><h3>Microphones</h3><ul><li>Full Sennheiser drum mic kit: tom mics, overheads and kick mic</li><li>SM58s</li><li>SM57</li><li>SM47</li><li>Sennheiser e305</li><li>ATM250</li></ul></div>
+      <div><h3>Stands and cables</h3><ul><li>Mic stands, amp mic stands and kick mic stands</li><li>XLR and 1/4in cables</li><li>2 DI boxes</li></ul></div>
+    </div>
+  </section>
+
   <section id="who">
     <h2>Who this is for</h2>
     <p class="sub">If people need to hear someone clearly, this covers it.</p>
@@ -126,10 +216,10 @@ blockquote.proof footer{border:0;padding:12px 0 0;font:400 15px var(--body);colo
       <!-- EDIT: set your own rates -->
       <div class="pkg">
         <h3>Gear only</h3>
-        <div class="price">$150 <small>/ event</small></div>
+        <div class="price">From $100 <small>/ weekend</small></div>
         <p class="for">You or your own sound person run it</p>
         <ul>
-          <li>PA, mixer and mics</li>
+          <li>Party Kit ($100) or Party Kit with mics ($150)</li>
           <li>Cables and stands included</li>
           <li>Pickup or delivery quoted by location</li>
         </ul>
@@ -137,13 +227,13 @@ blockquote.proof footer{border:0;padding:12px 0 0;font:400 15px var(--body);colo
       </div>
       <div class="pkg feat">
         <h3>Gear + engineer</h3>
-        <div class="price">$150 <small>+ $60 / hr</small></div>
+        <div class="price">$200 <small>+ $60 / hr</small></div>
         <p class="for">I bring it, set it up and run it</p>
         <ul>
           <li>Everything in gear only</li>
           <li>Setup, soundcheck and teardown</li>
           <li>I mix the whole event</li>
-          <li>3-hour minimum</li><li>Example: 4 hours total is $390</li>
+          <li>3-hour minimum</li><li>Example: 4 hours total is $440</li>
         </ul>
         <a class="btn" href="#quote">Ask about this</a>
       </div>

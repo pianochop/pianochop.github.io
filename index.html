@@ -4,8 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<title>Flora Audio — podcast clips, live sound, mixing and recording</title>
-<meta name="description" content="Podcast clips, live sound, mixing and recording from one audio engineer.">
+<title>Flora Audio | Austin live sound and PA rental, podcast clips, mixing</title>
+<meta name="description" content="Austin audio engineer: live sound and PA rental for events and bands, podcast clips, mixing and recording. Get a quote within a day.">
+<meta property="og:title" content="Flora Audio | Austin live sound, podcast clips, mixing">
+<meta property="og:description" content="Live sound and PA rental, podcast clips, mixing and recording from one Austin audio engineer.">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&display=swap" rel="stylesheet">
@@ -100,47 +103,69 @@ blockquote.proof footer{border:0;padding:12px 0 0;font:400 15px var(--body);colo
 </div></header>
 <main><div class="wrap">
 <div class="hero">
-<h1>Audio for shows, events and releases.</h1>
-<p class="lede">Podcast clips, live sound, mixing and recording, all from one audio engineer. Pick what you need.</p>
-<a class="btn" href="#services">See services</a>
+<h1>Live sound, podcast clips and mixing in Austin.</h1>
+<p class="lede">PA rental and live sound for events and bands, plus podcast clips, mixing and recording, all from one audio engineer.</p>
+<a class="btn" href="#quote">Get a quote</a><a class="btn alt" href="#services">See services</a>
 </div>
 <section id="services"><h2>Services</h2>
 <div class="pkgs hub">
 <a class="pkg" href="clips.html"><h3>Podcast clips</h3><p>Weekly short-form clips cut, captioned and posted for you.</p><span class="go">From $199/mo</span></a>
 <a class="pkg" href="podcasters.html"><h3>Podcast audio</h3><p>Audio repair and episode editing, with clips if you want them.</p><span class="go">For podcasters</span></a>
 <a class="pkg" href="elearning.html"><h3>eLearning audio</h3><p>Clean, consistent audio for lectures and course modules, on a flat monthly retainer.</p><span class="go">Monthly retainer</span></a>
-<a class="pkg" href="live-sound.html"><h3>Live sound</h3><p>PA and engineer for events, venues and bands.</p><span class="go">From $150 gear</span></a>
+<a class="pkg" href="live-sound.html"><h3>Live sound and PA rental</h3><p>PA rental, or PA plus engineer, for parties, weddings, bars and bands.</p><span class="go">From $100 / weekend</span></a>
 <a class="pkg" href="recording.html"><h3>Mixing &amp; recording</h3><p>Remote mixing and mastering, and recording sessions.</p><span class="go">From $50 a song</span></a>
 </div></section>
 <section id="about">
 <div class="about">
 <img class="avatar" src="images/els-photo.jpg" alt="Els, smiling, in a black and white photo" width="132" height="132" loading="lazy">
-<div><h2>Hi, I'm Els.</h2><p>I'm an audio engineer in Austin, Texas. I've worked in audio post-production since 2020, and I'm the audio specialist at UT Austin's LAITS, where I run sound for live-streamed classes. I've edited and mixed 10+ podcast series, I mix and master records, and I run live sound with my own PA. When you hire Flora Audio, you work with me directly.</p></div>
+<div><h2>Hi, I'm Els.</h2><p>I'm an audio engineer in Austin, Texas, and I've been doing audio professionally since 2019. My background includes live events at SXSW and KVRX and managing an 8-city tour. I've edited and mixed 10+ podcast series, I mix and master records, and I run live sound with my own PA. When you hire Flora Audio, you work with me directly.</p></div>
 </div>
 </section>
 <section id="quote">
 <h2>Get in touch</h2>
 <p class="sub">Not sure which service fits? Tell me what you are working on.</p>
 <form data-subject="Flora Audio inquiry">
-<label>Your name<input name="your_name" placeholder="" required></label><label>What do you need<textarea name="d" placeholder="A short description is fine"></textarea></label>
+<label>Your name<input name="your_name" autocomplete="name" required></label><label>Email<input name="email" type="email" autocomplete="email" required></label><label>Phone (optional)<input name="phone" type="tel" autocomplete="tel"></label><label>Date and place (if it's an event)<input name="when_where" placeholder="Sat Nov 8, a backyard in East Austin"></label><label>What do you need<textarea name="d" placeholder="A short description is fine"></textarea></label>
+<input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
 <button class="btn" type="submit">Send request</button>
 </form>
 <p class="note">Prefer email? Write to <a href="mailto:els@floraaudio.com">els@floraaudio.com</a>.</p>
 </section>
 </div></main>
-<footer><div class="wrap">&copy; Flora Audio</div></footer>
+<footer><div class="wrap">&copy; Flora Audio &middot; Austin, Texas &middot; <a href="mailto:els@floraaudio.com">els@floraaudio.com</a></div></footer>
 <script>
-/* EDIT: your business email */
+/* Paste your free Web3Forms access key below (web3forms.com, enter els@floraaudio.com).
+   Until you do, the form falls back to opening the visitor's email app. */
+var ACCESS_KEY = "57b419e9-8a76-489b-af3c-d31cb48bc44d";
 var EMAIL = "els@floraaudio.com";
 document.querySelectorAll("form[data-subject]").forEach(function(f){
+  var status=document.createElement("p");
+  status.className="note"; status.setAttribute("role","status");
+  f.parentNode.insertBefore(status,f.nextSibling);
   f.addEventListener("submit",function(e){
     e.preventDefault();
-    var lines=[];
+    var lines=[], data={access_key:ACCESS_KEY,subject:f.dataset.subject,from_name:"Flora Audio website"};
     f.querySelectorAll("label").forEach(function(l){
       var el=l.querySelector("input,select,textarea");
-      if(el&&el.value){lines.push(l.firstChild.textContent.trim()+": "+el.value);}
+      if(el&&el.value){lines.push(l.firstChild.textContent.trim()+": "+el.value);data[el.name]=el.value;}
     });
-    window.location.href="mailto:"+EMAIL+"?subject="+encodeURIComponent(f.dataset.subject)+"&body="+encodeURIComponent(lines.join("\n"));
+    data.botcheck=f.elements.botcheck.checked;
+    if(ACCESS_KEY.indexOf("YOUR_")===0){
+      window.location.href="mailto:"+EMAIL+"?subject="+encodeURIComponent(f.dataset.subject)+"&body="+encodeURIComponent(lines.join("\n"));
+      return;
+    }
+    var btn=f.querySelector("button"); btn.disabled=true; btn.textContent="Sending...";
+    fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(data)})
+      .then(function(r){return r.json();})
+      .then(function(d){
+        if(!d.success){throw new Error("failed");}
+        f.reset(); btn.textContent="Sent";
+        status.textContent="Thanks, I got it. I'll reply within a day.";
+      })
+      .catch(function(){
+        btn.disabled=false; btn.textContent="Send request";
+        status.textContent="That didn't send. Please email "+EMAIL+" instead.";
+      });
   });
 });
 </script>

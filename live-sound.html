@@ -4,8 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<title>Live sound in Austin — Flora Audio</title>
-<meta name="description" content="Your own PA and a live sound engineer for bars, private events, bands and school or church events in Austin. Flat package pricing.">
+<title>Live sound and PA rental in Austin | Flora Audio</title>
+<meta name="description" content="PA rental from $100 a weekend, or PA plus a live sound engineer, for bars, private events, bands and school or church events in Austin. Simple upfront pricing.">
+<meta property="og:title" content="Live sound and PA rental in Austin | Flora Audio">
+<meta property="og:description" content="PA rental from $100 a weekend, or PA plus a live sound engineer, for events and bands in Austin.">
+<meta property="og:type" content="website">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Flora Audio","url":"https://floraaudio.com/live-sound","description":"Live sound engineering and PA rental in Austin, Texas.","areaServed":{"@type":"City","name":"Austin, TX"},"email":"els@floraaudio.com"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&display=swap" rel="stylesheet">
@@ -151,7 +155,7 @@ blockquote.proof footer{border:0;padding:12px 0 0;font:400 15px var(--body);colo
   <section id="about">
 <div class="about">
 <img class="avatar" src="images/els-photo.jpg" alt="Els, smiling, in a black and white photo" width="132" height="132" loading="lazy">
-<div><h2>Who's running the board</h2><p>I'm Els. I run sound for live-streamed classes at UT Austin, mix records, and bring my own PA to events around Austin. You talk to me from the first message to teardown.</p></div>
+<div><h2>Who's running the board</h2><p>I'm Els, an audio engineer in Austin. I've been doing audio professionally since 2019, including live events at SXSW and KVRX and managing an 8-city tour. I mix records and bring my own PA to events around Austin. You talk to me from the first message to teardown.</p></div>
 </div>
 </section>
   <section id="gear">
@@ -291,6 +295,8 @@ blockquote.proof footer{border:0;padding:12px 0 0;font:400 15px var(--body);colo
     <p class="sub">Tell me about the event and I will reply with a total price.</p>
     <form id="qf">
       <label>Your name<input name="name" required autocomplete="name"></label>
+      <label>Email<input name="email" type="email" required autocomplete="email"></label>
+      <label>Phone (optional)<input name="phone" type="tel" autocomplete="tel"></label>
       <label>Event type
         <select name="type">
           <option>Bar or venue night</option>
@@ -302,8 +308,10 @@ blockquote.proof footer{border:0;padding:12px 0 0;font:400 15px var(--body);colo
       </label>
       <label>Date and place<input name="when" placeholder="Saturday, Nov 14, East Austin" required></label>
       <label>Details<textarea name="details" placeholder="Number of guests, mics or bands, any gear you already have"></textarea></label>
+      <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
       <button class="btn" type="submit">Send request</button>
     </form>
+    <p class="note" id="qstatus" role="status"></p>
     <p class="note" id="fallback">Prefer email? Write to <a href="mailto:els@floraaudio.com">els@floraaudio.com</a>.</p>
   </section>
 
@@ -311,18 +319,41 @@ blockquote.proof footer{border:0;padding:12px 0 0;font:400 15px var(--body);colo
 </main>
 
 <footer>
-  <div class="wrap">&copy; Flora Audio &middot; Austin, Texas</div>
+  <div class="wrap">&copy; Flora Audio &middot; Austin, Texas &middot; <a href="mailto:els@floraaudio.com">els@floraaudio.com</a></div>
 </footer>
 
 <script>
-/* EDIT: swap EMAIL for your business address, or point the form at Formspree. */
+/* Paste your free Web3Forms access key below (web3forms.com, enter els@floraaudio.com).
+   Until you do, the form falls back to opening the visitor's email app. */
+var ACCESS_KEY = "57b419e9-8a76-489b-af3c-d31cb48bc44d";
 var EMAIL = "els@floraaudio.com";
 document.getElementById("qf").addEventListener("submit", function(e){
   e.preventDefault();
   var f = e.target, v = function(n){ return f.elements[n].value; };
+  var status = document.getElementById("qstatus"), btn = f.querySelector("button");
   var subject = "Live sound quote: " + v("type") + " (" + v("when") + ")";
-  var body = "Name: " + v("name") + "\nEvent: " + v("type") + "\nDate and place: " + v("when") + "\n\nDetails:\n" + v("details");
-  window.location.href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+  if (ACCESS_KEY.indexOf("YOUR_") === 0) {
+    var body = "Name: " + v("name") + "\nEmail: " + v("email") + "\nPhone: " + v("phone") + "\nEvent: " + v("type") + "\nDate and place: " + v("when") + "\n\nDetails:\n" + v("details");
+    window.location.href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    return;
+  }
+  btn.disabled = true; btn.textContent = "Sending...";
+  fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    headers: {"Content-Type": "application/json", "Accept": "application/json"},
+    body: JSON.stringify({
+      access_key: ACCESS_KEY, subject: subject, from_name: "Flora Audio website",
+      name: v("name"), email: v("email"), phone: v("phone"), event_type: v("type"),
+      date_and_place: v("when"), details: v("details"), botcheck: f.elements.botcheck.checked
+    })
+  }).then(function(r){ return r.json(); }).then(function(d){
+    if (!d.success) { throw new Error("failed"); }
+    f.reset(); btn.textContent = "Sent";
+    status.textContent = "Thanks, I got it. I'll reply within a day.";
+  }).catch(function(){
+    btn.disabled = false; btn.textContent = "Send request";
+    status.textContent = "That didn't send. Please email " + EMAIL + " instead.";
+  });
 });
 </script>
 </body>

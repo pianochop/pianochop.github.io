@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Content Review</title>
+<style>
+:root{--bg:#f6f5f2;--card:#fff;--ink:#1c1b19;--mute:#6f6c66;--line:#e3e0d9;--ok:#1f8a4c;--okbg:#e4f4ea;--chg:#b45309;--chgbg:#fdf0dc;--btn:#1c1b19;--btnink:#fff}
+@media (prefers-color-scheme:dark){:root{--bg:#141413;--card:#1f1e1c;--ink:#f1efe9;--mute:#9b978e;--line:#33312d;--ok:#5fcf8b;--okbg:#17301f;--chg:#f0a548;--chgbg:#34260f;--btn:#f1efe9;--btnink:#141413}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 -apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+header,main,footer{max-width:1100px;margin:0 auto;padding:0 20px}
+header{padding-top:28px}
+h1{margin:0 0 4px;font-size:26px}
+.sub{color:var(--mute);margin:0 0 16px}
+.bar{height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ok);width:0;transition:width .3s}
+.count{font-size:14px;color:var(--mute);margin:6px 0 14px}
+main{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px;padding-bottom:24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:10px}
+.vid{aspect-ratio:9/16;background:#000;border-radius:10px;overflow:hidden}
+.vid video{width:100%;height:100%;object-fit:contain}
+.t{font-weight:600}.cap{color:var(--mute);font-size:14px;white-space:pre-wrap;margin-top:-6px}
+.badge{display:inline-block;font-size:12px;font-weight:600;padding:3px 9px;border-radius:99px;background:var(--line);color:var(--mute);align-self:flex-start}
+.badge.ok{background:var(--okbg);color:var(--ok)}.badge.chg{background:var(--chgbg);color:var(--chg)}
+.row{display:flex;gap:8px}
+button{font:inherit;font-size:14px;font-weight:600;border-radius:9px;padding:9px 12px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;flex:1}
+button.ok{background:var(--btn);color:var(--btnink);border-color:var(--btn)}
+button.sel{outline:2px solid var(--ok)}
+button:disabled{opacity:.45;cursor:not-allowed}
+textarea,input{width:100%;font:inherit;font-size:14px;padding:8px 10px;border-radius:9px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+textarea{resize:vertical;min-height:58px}
+footer{padding-bottom:60px}
+.sendbox{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.sendbox .row button{flex:none}
+#status{font-size:14px;color:var(--mute)}
+</style>
+</head>
+<body>
+<header>
+  <h1>Content Review</h1>
+  <p class="sub">Watch each clip, then approve it or tell us what to change. When all are marked, send your review at the bottom.</p>
+  <div class="bar"><i id="bar"></i></div>
+  <div class="count" id="count"></div>
+</header>
+<main id="app"></main>
+<footer>
+  <div class="sendbox">
+    <input id="who" type="text" placeholder="Your name">
+    <div class="row">
+      <button class="ok" id="send" disabled>Send review</button>
+      <button id="copy" disabled>Copy summary</button>
+    </div>
+    <div id="status"></div>
+  </div>
+</footer>
+
+<script>
+/* ============ EDIT THIS SECTION ============ */
+const CLIENT = "Dr. K";
+const SEND_TO = "els@floraaudio.com";
+const FORM_ENDPOINT = "https://formspree.io/f/xjyypplg";
+const CLIPS = [
+  {"file": "clip1.mp4", "title": "Clip 1", "caption": ""},
+  {"file": "clip2.mp4", "title": "Clip 2", "caption": ""},
+  {"file": "clip3.mp4", "title": "Clip 3", "caption": ""},
+  {"file": "clip4.mp4", "title": "Clip 4", "caption": ""},
+  {"file": "clip5.mp4", "title": "Clip 5", "caption": ""},
+  {"file": "clip6.mp4", "title": "Clip 6", "caption": ""},
+  {"file": "clip7.mp4", "title": "Clip 7", "caption": ""}
+];
+/* ============================================ */
+
+const KEY="flora-review:"+location.pathname;
+let st={};try{st=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const $=s=>document.querySelector(s);
+
+$("#app").innerHTML=CLIPS.map((c,i)=>`
+ <div class="card">
+  <div class="vid"><video src="${esc(c.file)}" controls playsinline preload="metadata"></video></div>
+  <div class="t">${i+1}. ${esc(c.title)}</div>
+  ${c.caption?`<div class="cap">${esc(c.caption)}</div>`:""}
+  <span class="badge" id="b${i}"></span>
+  <textarea id="n${i}" placeholder="Notes or requested changes"></textarea>
+  <div class="row"><button class="ok" id="a${i}">Approve</button><button id="r${i}">Request changes</button></div>
+ </div>`).join("");
+
+CLIPS.forEach((c,i)=>{
+  const s=st[i]||{};
+  $("#n"+i).value=s.note||"";
+  $("#n"+i).addEventListener("input",e=>{(st[i]=st[i]||{}).note=e.target.value;save()});
+  $("#a"+i).onclick=()=>{(st[i]=st[i]||{}).status="approved";save();paint()};
+  $("#r"+i).onclick=()=>{
+    if(!($("#n"+i).value.trim())){$("#n"+i).focus();$("#n"+i).placeholder="Please describe what to change";return}
+    (st[i]=st[i]||{}).status="changes";save();paint()};
+});
+$("#who").value=st.who||"";
+$("#who").addEventListener("input",e=>{st.who=e.target.value;save()});
+
+function paint(){
+  let ok=0,done=0;
+  CLIPS.forEach((c,i)=>{
+    const s=(st[i]||{}).status,b=$("#b"+i);
+    if(s)done++;if(s==="approved")ok++;
+    b.className="badge"+(s==="approved"?" ok":s==="changes"?" chg":"");
+    b.textContent=s==="approved"?"✓ Approved":s==="changes"?"Changes requested":"Awaiting review";
+    $("#a"+i).classList.toggle("sel",s==="approved");
+    $("#r"+i).classList.toggle("sel",s==="changes");
+  });
+  $("#bar").style.width=(ok/CLIPS.length*100)+"%";
+  $("#count").textContent=`${ok} of ${CLIPS.length} approved · ${done} of ${CLIPS.length} reviewed`;
+  $("#send").disabled=$("#copy").disabled=done<CLIPS.length;
+  if(done<CLIPS.length)$("#status").textContent="Mark every clip to enable sending.";
+  else if(!$("#status").dataset.sent)$("#status").textContent="All clips reviewed. Ready to send.";
+}
+
+function summary(){
+  const who=$("#who").value.trim()||"(no name given)";
+  let t=`Review from ${who} for ${CLIENT}\n\n`;
+  CLIPS.forEach((c,i)=>{
+    const s=st[i]||{};
+    t+=`${i+1}. ${c.title}: ${s.status==="approved"?"APPROVED":"CHANGES REQUESTED"}\n`;
+    if(s.note&&s.note.trim())t+=`   Notes: ${s.note.trim()}\n`;
+  });
+  return t;
+}
+$("#copy").onclick=async()=>{
+  try{await navigator.clipboard.writeText(summary());$("#status").textContent="Summary copied."}
+  catch(e){$("#status").textContent="Couldn't copy. Use Send review instead."}
+};
+$("#send").onclick=async()=>{
+  const body=summary(),subject=`Content review: ${CLIENT}`;
+  if(FORM_ENDPOINT){
+    $("#status").textContent="Sending…";
+    try{
+      const r=await fetch(FORM_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({subject,message:body,name:$("#who").value})});
+      if(!r.ok)throw 0;
+      $("#status").dataset.sent=1;$("#status").textContent="Sent. Thank you!";return;
+    }catch(e){$("#status").textContent="Sending failed. Use Copy summary and email it instead."}
+  }else{
+    location.href=`mailto:${SEND_TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    $("#status").textContent="Your email app should open. Press send there to finish.";
+  }
+};
+paint();
+</script>
+</body>
+</html>
